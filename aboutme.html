@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartoon Sitting Animation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="cartoon" id="cartoon"></div>
+    <div class="chair" id="chair"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+<style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #000;
+}
+
+.cartoon, .chair {
+  position: absolute;
+  bottom: 0;
+}
+
+.cartoon {
+  width: 50px;
+  height: 100px;
+  background-color: yellow;
+  left: -60px;
+}
+
+.chair {
+  width: 50px;
+  height: 100px;
+  background-color: brown;
+  right: 50px;
+}
+
+@keyframes slideIn {
+  0% {
+    left: -60px;
+  }
+  50% {
+    left: 100px;
+  }
+  100% {
+    left: 80px;
+  }
+}
+
+@keyframes sitDown {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -20px;
+  }
+}
+
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const cartoon = document.getElementById("cartoon");
+  const chair = document.getElementById("chair");
+
+  // Slide the cartoon to the chair
+  cartoon.style.animation = "slideIn 2s forwards";
+
+  // Sit down after sliding
+  cartoon.addEventListener("animationend", (e) => {
+    if (e.animationName === "slideIn") {
+      cartoon.style.animation = "sitDown 1s forwards";
+    }
+  });
+});
+
+</script>
